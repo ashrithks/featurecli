@@ -1,12 +1,12 @@
-rnStarterCli
+rnfeaturestarterCli
 ============
 
 Project Initializer
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/rnStarterCli.svg)](https://npmjs.org/package/rnStarterCli)
-[![Downloads/week](https://img.shields.io/npm/dw/rnStarterCli.svg)](https://npmjs.org/package/rnStarterCli)
-[![License](https://img.shields.io/npm/l/rnStarterCli.svg)](https://github.com/Documents/rnStarterCli/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/rnfeaturestarterCli.svg)](https://npmjs.org/package/rnfeaturestarterCli)
+[![Downloads/week](https://img.shields.io/npm/dw/rnfeaturestarterCli.svg)](https://npmjs.org/package/rnfeaturestarterCli)
+[![License](https://img.shields.io/npm/l/rnfeaturestarterCli.svg)](https://github.com/Documents/rnfeaturestarterCli/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -16,28 +16,28 @@ Project Initializer
 <!-- usage -->
 ```sh-session
 $ npm install -g rnfeaturecli
-$ RNStarter COMMAND
+$ rnfeaturecli COMMAND
 running command...
-$ RNStarter (-v|--version|version)
-rnfeaturecli/0.0.1 darwin-x64 node-v11.8.0
-$ RNStarter --help [COMMAND]
+$ rnfeaturecli (-v|--version|version)
+rnfeaturecli/0.0.6 darwin-x64 node-v11.8.0
+$ rnfeaturecli --help [COMMAND]
 USAGE
-  $ RNStarter COMMAND
+  $ rnfeaturecli COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`RNStarter help [COMMAND]`](#rnstarter-help-command)
-* [`RNStarter start`](#rnstarter-start)
+* [`rnfeaturecli help [COMMAND]`](#rnfeaturecli-help-command)
+* [`rnfeaturecli start`](#rnfeaturecli-start)
 
-## `RNStarter help [COMMAND]`
+## `rnfeaturecli help [COMMAND]`
 
-display help for RNStarter
+display help for rnfeaturecli
 
 ```
 USAGE
-  $ RNStarter help [COMMAND]
+  $ rnfeaturecli help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -48,17 +48,17 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
 
-## `RNStarter start`
+## `rnfeaturecli start`
 
 Feature Starter Kit
 
 ```
 USAGE
-  $ RNStarter start
+  $ rnfeaturecli start
 
 DESCRIPTION
   Feature Starter Kit
 ```
 
-_See code: [src/commands/start.js](https://github.com/Documents/rnStarterCli/blob/v0.0.1/src/commands/start.js)_
+_See code: [src/commands/start.js](https://github.com/ashrithks/featurecli/blob/v0.0.6/src/commands/start.js)_
 <!-- commandsstop -->

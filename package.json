@@ -1,10 +1,10 @@
 {
   "name": "rnfeaturecli",
   "description": "Project Initializer",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "author": "Ashrith K S",
   "bin": {
-    "ReactNative": "./bin/run"
+    "rnfeaturecli": "./bin/run"
   },
   "dependencies": {
     "@oclif/command": "^1.5.12",
@@ -41,7 +41,7 @@
   "main": "src/index.js",
   "oclif": {
     "commands": "./src/commands",
-    "bin": "RNStarter",
+    "bin": "rnfeaturecli",
     "plugins": [
       "@oclif/plugin-help"
     ]
