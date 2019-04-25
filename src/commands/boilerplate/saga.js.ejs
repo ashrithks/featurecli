@@ -1,0 +1,29 @@
+import { call, put } from 'redux-saga/effects';
+import <%= props.name %>Actions from '../Actions/<%= props.dirname %>Action';
+import { <%= props.dirname %> } from '../../../Network/Interfaces';
+import Utils from '../../../Commons/Utils';
+
+export function* <%= props.dirname %>API(action) {
+const { <%= props.dirname %>Info } = action;
+try {
+const response = yield call(<%= props.dirname %>, <%= props.dirname %>Info);
+console.log('TCL: exportfunction*<%= props.dirname %>Validation -> response', response);
+
+let parsedResponse = response;
+if (Utils.isValid(response.data)) {
+parsedResponse = response.data;
+}
+
+if (response && response.status === 200) {
+yield put(<%= props.name %>Actions.<%= props.dirname %>Success(parsedResponse));
+} else if (response && (response.status === 401 || response.status === 404)) {
+yield put(<%= props.name %>Actions.<%= props.dirname %>Failure({ error: parsedResponse }));
+} else if (response) {
+yield put(<%= props.name %>Actions.<%= props.dirname %>Failure({ error: response }));
+} else {
+yield put(<%= props.name %>Actions.<%= props.dirname %>Failure({ error: 'SOMETHING_WRONG' }));
+}
+} catch (error) {
+yield put(<%= props.name %>Actions.<%= props.dirname %>Failure({ error }));
+}
+}

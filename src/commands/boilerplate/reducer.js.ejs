@@ -1,0 +1,61 @@
+import { createReducer } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
+import ActionTypes from '../ActionTypes/<%= props.dirname %>ActionType';
+/* ------------- Initial State ------------- */
+
+export const INITIAL_STATE = Immutable({
+fetching: false,
+<%= props.dirname %>Info: null,
+<%= props.dirname %>Response: null,
+<%= props.dirname %>Error: null
+});
+
+/* ------------- Reducers ------------- */
+
+// request the data from an api
+export const request = (state, action) => {
+const { <%= props.dirname %>Info } = action;
+return state.merge({
+fetching: true,
+<%= props.dirname %>Info,
+<%= props.dirname %>Error: null,
+<%= props.dirname %>Response: null
+});
+};
+
+// successful api lookup
+export const success = (state, action) => {
+const { <%= props.dirname %>Response } = action;
+return state.merge({
+fetching: false,
+<%= props.dirname %>Error: null,
+<%= props.dirname %>Response
+});
+};
+
+// Something went wrong somewhere.
+export const failure = (state, action) => {
+const { <%= props.dirname %>Error } = action;
+return state.merge({
+fetching: false,
+<%= props.dirname %>Error,
+<%= props.dirname %>Response: null,
+<%= props.dirname %>Info: null
+});
+};
+
+export const reset = (state) => state.merge({
+fetching: false,
+<%= props.dirname %>Error: null,
+<%= props.dirname %>Response: null,
+<%= props.dirname %>Info: null
+});
+
+/* ------------- Hookup Reducers To Types ------------- */
+
+export default createReducer(INITIAL_STATE, {
+[ActionTypes.<%= props.allcapsname %>_REQUEST]: request,
+[ActionTypes.<%= props.allcapsname %>_SUCCESS]: success,
+[ActionTypes.<%= props.allcapsname %>_ERROR]: failure,
+[ActionTypes.<%= props.allcapsname %>_RESET]: reset
+});

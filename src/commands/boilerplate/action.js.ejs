@@ -1,0 +1,16 @@
+import { createActions } from 'reduxsauce';
+import ActionTypes from '../ActionTypes/<%= props.dirname %>ActionType';
+
+/* ------------- Types and Action Creators ------------- */
+const { Creators } = createActions({
+<%= props.dirname %>Request: (<%= props.dirname %>Info) =>
+({ type: ActionTypes.<%= props.allcapsname %>_REQUEST, <%= props.dirname %>Info }),
+<%= props.dirname %>Success: (<%= props.dirname %>Response) =>
+({ type: ActionTypes.<%= props.allcapsname %>_SUCCESS, <%= props.dirname %>Response }),
+<%= props.dirname %>Failure: (<%= props.dirname %>Error) =>
+({ type: ActionTypes.<%= props.allcapsname %>_ERROR, <%= props.dirname %>Error }),
+<%= props.dirname %>Reset: () =>
+({ type: ActionTypes.<%= props.allcapsname %>_RESET })
+});
+
+export default Creators;

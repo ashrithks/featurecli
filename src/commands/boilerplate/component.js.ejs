@@ -1,0 +1,76 @@
+/* global __DEV__ */
+//'use strict';
+import React, { Component } from 'react';
+import {
+Text,
+View
+} from 'react-native';
+import { connect } from 'react-redux';
+import { SafeAreaView } from 'react-navigation';
+import lodash from 'lodash';
+import testId from 'rn-test-id';
+import getStyles from '../Styles/a<%= props.dirname %>Style';
+import {
+loc, rol, hp, wp, fp,
+i18n, testIdJson
+} from '../../../Commons';
+import <%= props.name %>Actions from '../Actions/<%= props.dirname %>Action';
+
+export class <%= props.name %>Component extends Component {
+static navigationOptions = ({ navigation, screenProps }) =>
+({
+navigationOptions: () => ({
+header: null
+}),
+});
+constructor(props) {
+super(props);
+this.state = {
+};
+}
+
+componentDidMount = () => {
+loc(this);
+};
+
+componentWillUnmount() {
+rol();
+}
+
+render() {
+const styles = getStyles(wp, hp, fp);
+const { theme } = this.props.screenProps;
+return (
+<SafeAreaView style={[ styles.container, { backgroundColor: theme.backgroundColor } ]}>
+  {this.props.fetching ?
+  <ActivityIndicator color={theme.activityIndicatorColor} />
+  : null
+  }
+</SafeAreaView>
+);
+}
+}
+
+const mapStateToProps = state => {
+const {
+fetching,
+<%= props.dirname %>Info,
+<%= props.dirname %>Response,
+<%= props.dirname %>Error
+} = state.authReducer;
+return {
+fetching,
+<%= props.dirname %>Info,
+<%= props.dirname %>Response,
+<%= props.dirname %>Error
+};
+};
+
+const mapDispatchToProps = dispatch => ({
+reset<%= props.name %>: () => dispatch(<%= props.name %>Actions.<%= props.dirname %>Reset())
+});
+
+export default connect(
+mapStateToProps,
+mapDispatchToProps
+)(<%= props.name %>Component);
