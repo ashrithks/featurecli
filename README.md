@@ -1,7 +1,7 @@
-rnfeaturestarterCli
+rnfeaturecli
 ============
 
-Project Initializer
+Feature Initializer
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/rnfeaturestarterCli.svg)](https://npmjs.org/package/rnfeaturestarterCli)
@@ -19,7 +19,7 @@ $ npm install -g rnfeaturecli
 $ rnfeaturecli COMMAND
 running command...
 $ rnfeaturecli (-v|--version|version)
-rnfeaturecli/0.0.6 darwin-x64 node-v11.8.0
+rnfeaturecli/0.0.7 darwin-x64 node-v11.8.0
 $ rnfeaturecli --help [COMMAND]
 USAGE
   $ rnfeaturecli COMMAND
@@ -60,5 +60,5 @@ DESCRIPTION
   Feature Starter Kit
 ```
 
-_See code: [src/commands/start.js](https://github.com/ashrithks/featurecli/blob/v0.0.6/src/commands/start.js)_
+_See code: [src/commands/start.js](https://github.com/ashrithks/featurecli/blob/v0.0.7/src/commands/start.js)_
 <!-- commandsstop -->
