@@ -1,7 +1,7 @@
 {
   "name": "rnfeaturecli",
   "description": "Project Initializer",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Ashrith K S",
   "bin": {
     "rnfeaturecli": "./bin/run"
