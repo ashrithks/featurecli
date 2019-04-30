@@ -19,7 +19,7 @@ $ npm install -g rnfeaturecli
 $ rnfeaturecli COMMAND
 running command...
 $ rnfeaturecli (-v|--version|version)
-rnfeaturecli/0.0.8 darwin-x64 node-v11.8.0
+rnfeaturecli/0.0.9 darwin-x64 node-v11.8.0
 $ rnfeaturecli --help [COMMAND]
 USAGE
   $ rnfeaturecli COMMAND
@@ -60,5 +60,5 @@ DESCRIPTION
   Feature Starter Kit
 ```
 
-_See code: [src/commands/start.js](https://github.com/ashrithks/featurecli/blob/v0.0.8/src/commands/start.js)_
+_See code: [src/commands/start.js](https://github.com/ashrithks/featurecli/blob/v0.0.9/src/commands/start.js)_
 <!-- commandsstop -->

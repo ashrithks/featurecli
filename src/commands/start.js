@@ -50,7 +50,7 @@ class StartCommand extends Command {
     const answers = await askQuestions()
     const {FEATURENAME, FILEONLY} = answers
     const ALLCAPSNAME = FEATURENAME.toUpperCase()
-    const DIRNAME = FEATURENAME.toLowerCase()
+    const DIRNAME = FEATURENAME.charAt(0).toLowerCase() + FEATURENAME.slice(1)
     this.log(FEATURENAME)
     this.log(DIRNAME)
     this.log(ALLCAPSNAME)
