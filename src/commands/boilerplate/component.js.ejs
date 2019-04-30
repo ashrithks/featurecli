@@ -12,16 +12,14 @@ import testId from 'rn-test-id';
 import getStyles from '../Styles/<%= props.dirname %>Style';
 import {
 loc, rol, hp, wp, fp,
-i18n, testIdJson,ActivityIndicator
+i18n, testIdJson
 } from '../../../Commons';
 import <%= props.name %>Actions from '../Actions/<%= props.dirname %>Action';
 
 export class <%= props.name %>Component extends Component {
 static navigationOptions = ({ navigation, screenProps }) =>
 ({
-navigationOptions: () => ({
 header: null
-}),
 });
 constructor(props) {
 super(props);
@@ -42,10 +40,7 @@ const styles = getStyles(wp, hp, fp);
 const { theme } = this.props.screenProps;
 return (
 <SafeAreaView style={[ styles.container, { backgroundColor: theme.backgroundColor } ]}>
-  {this.props.fetching ?
-  <ActivityIndicator color={theme.activityIndicatorColor} />
-  : null
-  }
+
 </SafeAreaView>
 );
 }
