@@ -49,7 +49,8 @@ class StartCommand extends Command {
     initMessage(this.log)
     const answers = await askQuestions()
     const {FEATURENAME, FILEONLY} = answers
-    const ALLCAPSNAME = FEATURENAME.toUpperCase()
+    const uderScoreName = FEATURENAME.match(/[A-Z][a-z]+|\d+/g).join('_')
+    const ALLCAPSNAME = uderScoreName.toUpperCase()
     const DIRNAME = FEATURENAME.charAt(0).toLowerCase() + FEATURENAME.slice(1)
     this.log(FEATURENAME)
     this.log(DIRNAME)
