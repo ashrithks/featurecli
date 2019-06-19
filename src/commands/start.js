@@ -1,3 +1,4 @@
+/* eslint-disable no-negated-condition */
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable no-path-concat */
 /* eslint-disable no-console */
@@ -27,6 +28,47 @@ const askQuestions = () => {
       name: 'FILEONLY',
       type: 'confirm',
       message: 'only Files?',
+    },
+  ]
+  return inquirer.prompt(questions)
+}
+
+const askFileOnlyQuestions = () => {
+  const questions = [
+    {
+      name: 'ACTIONS',
+      type: 'confirm',
+      message: 'Action File Required?',
+    },
+    {
+      name: 'ACTIONTYPE',
+      type: 'confirm',
+      message: 'ActionType File Required?',
+    },
+    {
+      name: 'COMPONENT',
+      type: 'confirm',
+      message: 'Component File Required?',
+    },
+    {
+      name: 'CONTAINER',
+      type: 'confirm',
+      message: 'Container File Required?',
+    },
+    {
+      name: 'REDUCER',
+      type: 'confirm',
+      message: 'Reducer File Required?',
+    },
+    {
+      name: 'SAGA',
+      type: 'confirm',
+      message: 'Saga File Required?',
+    },
+    {
+      name: 'STYLE',
+      type: 'confirm',
+      message: 'Style File Required?',
     },
   ]
   return inquirer.prompt(questions)
@@ -87,140 +129,241 @@ class StartCommand extends Command {
       if (!fs.existsSync(`${process.cwd()}/${FEATURENAME}/Test`)) {
         fs.mkdirSync(`${process.cwd()}/${FEATURENAME}/Test`)
       }
-    }
-    ejs.renderFile(actionTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
-      function (err, result) {
-        if (!err) {
-          let path = ''
-          if (FILEONLY) {
-            path = `${process.cwd()}/Actions/${DIRNAME}Action.js`
-          } else {
+      ejs.renderFile(actionTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
             path = `${process.cwd()}/${FEATURENAME}/Actions/${DIRNAME}Action.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Action file was saved!')
+            })
           }
-          fs.writeFile(path, result, function (err) {
-            if (err) {
-              return console.log(err)
-            }
-            console.log('The Action file was saved!')
-          })
+          console.log(err)
         }
-        console.log(err)
-      }
-    )
-    ejs.renderFile(actionTypeTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
-      function (err, result) {
-        if (!err) {
-          let path = ''
-          if (FILEONLY) {
-            path = `${process.cwd()}/ActionTypes/${DIRNAME}ActionType.js`
-          } else {
+      )
+      ejs.renderFile(actionTypeTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
             path = `${process.cwd()}/${FEATURENAME}/ActionTypes/${DIRNAME}ActionType.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Action type file was saved!')
+            })
           }
-          fs.writeFile(path, result, function (err) {
-            if (err) {
-              return console.log(err)
-            }
-            console.log('The Action type file was saved!')
-          })
+          console.log(err)
         }
-        console.log(err)
-      }
-    )
-    ejs.renderFile(componentTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
-      function (err, result) {
-        if (!err) {
-          let path = ''
-          if (FILEONLY) {
-            path = `${process.cwd()}/Components/${DIRNAME}Component.js`
-          } else {
+      )
+      ejs.renderFile(componentTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
             path = `${process.cwd()}/${FEATURENAME}/Components/${DIRNAME}Component.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Component file was saved!')
+            })
           }
-          fs.writeFile(path, result, function (err) {
-            if (err) {
-              return console.log(err)
-            }
-            console.log('The Component file was saved!')
-          })
+          console.log(err)
         }
-        console.log(err)
-      }
-    )
-    ejs.renderFile(containerTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
-      function (err, result) {
-        if (!err) {
-          let path = ''
-          if (FILEONLY) {
-            path = `${process.cwd()}/Containers/${DIRNAME}Container.js`
-          } else {
+      )
+      ejs.renderFile(containerTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
             path = `${process.cwd()}/${FEATURENAME}/Containers/${DIRNAME}Container.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Container file was saved!')
+            })
           }
-          fs.writeFile(path, result, function (err) {
-            if (err) {
-              return console.log(err)
-            }
-            console.log('The Container file was saved!')
-          })
+          console.log(err)
         }
-        console.log(err)
-      }
-    )
-    ejs.renderFile(reducerTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
-      function (err, result) {
-        if (!err) {
-          let path = ''
-          if (FILEONLY) {
-            path = `${process.cwd()}/Reducers/${DIRNAME}Reducer.js`
-          } else {
+      )
+      ejs.renderFile(reducerTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
             path = `${process.cwd()}/${FEATURENAME}/Reducers/${DIRNAME}Reducer.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Reducer file was saved!')
+            })
           }
-          fs.writeFile(path, result, function (err) {
-            if (err) {
-              return console.log(err)
-            }
-            console.log('The Reducer file was saved!')
-          })
+          console.log(err)
         }
-        console.log(err)
-      }
-    )
-    ejs.renderFile(sagaTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
-      function (err, result) {
-        if (!err) {
-          let path = ''
-          if (FILEONLY) {
-            path = `${process.cwd()}/Sagas/${DIRNAME}Saga.js`
-          } else {
+      )
+      ejs.renderFile(sagaTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
             path = `${process.cwd()}/${FEATURENAME}/Sagas/${DIRNAME}Saga.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Saga file was saved!')
+            })
           }
-          fs.writeFile(path, result, function (err) {
-            if (err) {
-              return console.log(err)
-            }
-            console.log('The Saga file was saved!')
-          })
+          console.log(err)
         }
-        console.log(err)
-      }
-    )
-    ejs.renderFile(styleTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
-      function (err, result) {
-        if (!err) {
-          let path = ''
-          if (FILEONLY) {
-            path = `${process.cwd()}/Styles/${DIRNAME}Style.js`
-          } else {
+      )
+      ejs.renderFile(styleTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
             path = `${process.cwd()}/${FEATURENAME}/Styles/${DIRNAME}Style.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Style file was saved!')
+            })
           }
-          fs.writeFile(path, result, function (err) {
-            if (err) {
-              return console.log(err)
-            }
-            console.log('The Style file was saved!')
-          })
+          console.log(err)
         }
-        console.log(err)
+      )
+    } else {
+      const answersForFiles = await askFileOnlyQuestions()
+      const {ACTIONS, ACTIONTYPE, COMPONENT, CONTAINER, REDUCER, SAGA, STYLE} = answersForFiles
+      if (ACTIONS) {
+        ejs.renderFile(actionTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+              path = `${process.cwd()}/Actions/${DIRNAME}Action.js`
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Action file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
       }
-    )
+      if (ACTIONTYPE) {
+        ejs.renderFile(actionTypeTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+
+              path = `${process.cwd()}/ActionTypes/${DIRNAME}ActionType.js`
+
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Action type file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
+      }
+      if (COMPONENT) {
+        ejs.renderFile(componentTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+              path = `${process.cwd()}/Components/${DIRNAME}Component.js`
+
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Component file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
+      }
+      if (CONTAINER) {
+        ejs.renderFile(containerTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+              path = `${process.cwd()}/Containers/${DIRNAME}Container.js`
+
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Container file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
+      }
+      if (REDUCER) {
+        ejs.renderFile(reducerTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+              path = `${process.cwd()}/Reducers/${DIRNAME}Reducer.js`
+
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Reducer file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
+      }
+      if (SAGA) {
+        ejs.renderFile(sagaTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+              path = `${process.cwd()}/Sagas/${DIRNAME}Saga.js`
+
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Saga file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
+      }
+      if (STYLE) {
+        ejs.renderFile(styleTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+              path = `${process.cwd()}/Styles/${DIRNAME}Style.js`
+
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Style file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
+      }
+    }
   }
 }
 
