@@ -105,6 +105,14 @@ const initMessage = logger => {
   )
 }
 
+const endMessage = logger => {
+  logger(
+    chalk.red.underline.bold(
+      'Dont forget to add saga and reducer to root!!!'
+    )
+  )
+}
+
 class StartCommand extends Command {
   async run() {
     initMessage(this.log)
@@ -298,6 +306,7 @@ class StartCommand extends Command {
           console.log(err)
         }
       )
+      endMessage(this.log)
     } else {
       const answersForFiles = await askFileOnlyQuestions()
       const {ACTIONS, ACTIONTYPE, COMPONENT, CONTAINER, REDUCER, SAGA, STYLE, ACTIONTEST, REDUCERTEST, SAGATEST} = answersForFiles
