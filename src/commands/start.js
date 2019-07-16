@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable no-negated-condition */
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable no-path-concat */
@@ -16,6 +17,8 @@ const containerTemplete = __dirname + '/boilerplate/container.js.ejs'
 const reducerTemplete = __dirname + '/boilerplate/reducer.js.ejs'
 const sagaTemplete = __dirname + '/boilerplate/saga.js.ejs'
 const styleTemplete = __dirname + '/boilerplate/styles.js.ejs'
+const actionSpecTemplete = __dirname + '/boilerplate/action.spec.js.ejs'
+const reducerSpecTemplete = __dirname + '/boilerplate/reducer.spec.js.ejs'
 
 const askQuestions = () => {
   const questions = [
@@ -69,6 +72,16 @@ const askFileOnlyQuestions = () => {
       name: 'STYLE',
       type: 'confirm',
       message: 'Style File Required?',
+    },
+    {
+      name: 'ACTIONTEST',
+      type: 'confirm',
+      message: 'Action Test File Required?',
+    },
+    {
+      name: 'REDUCERTEST',
+      type: 'confirm',
+      message: 'Reducer Test File Required?',
     },
   ]
   return inquirer.prompt(questions)
@@ -144,6 +157,21 @@ class StartCommand extends Command {
           console.log(err)
         }
       )
+      ejs.renderFile(actionSpecTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
+            path = `${process.cwd()}/${FEATURENAME}/Test/${DIRNAME}Action.spec.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Action  spec file was saved!')
+            })
+          }
+          console.log(err)
+        }
+      )
       ejs.renderFile(actionTypeTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
         function (err, result) {
           if (!err) {
@@ -204,6 +232,21 @@ class StartCommand extends Command {
           console.log(err)
         }
       )
+      ejs.renderFile(reducerSpecTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+        function (err, result) {
+          if (!err) {
+            let path = ''
+            path = `${process.cwd()}/${FEATURENAME}/Test/${DIRNAME}Reducer.spec.js`
+            fs.writeFile(path, result, function (err) {
+              if (err) {
+                return console.log(err)
+              }
+              console.log('The Reducer test file was saved!')
+            })
+          }
+          console.log(err)
+        }
+      )
       ejs.renderFile(sagaTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
         function (err, result) {
           if (!err) {
@@ -236,13 +279,30 @@ class StartCommand extends Command {
       )
     } else {
       const answersForFiles = await askFileOnlyQuestions()
-      const {ACTIONS, ACTIONTYPE, COMPONENT, CONTAINER, REDUCER, SAGA, STYLE} = answersForFiles
+      const {ACTIONS, ACTIONTYPE, COMPONENT, CONTAINER, REDUCER, SAGA, STYLE, ACTIONTEST, REDUCERTEST} = answersForFiles
       if (ACTIONS) {
         ejs.renderFile(actionTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
           function (err, result) {
             if (!err) {
               let path = ''
               path = `${process.cwd()}/Actions/${DIRNAME}Action.js`
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Action file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
+      }
+      if (ACTIONTEST) {
+        ejs.renderFile(actionSpecTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+              path = `${process.cwd()}/Test/${DIRNAME}Action.spec.js`
               fs.writeFile(path, result, function (err) {
                 if (err) {
                   return console.log(err)
@@ -321,6 +381,24 @@ class StartCommand extends Command {
                   return console.log(err)
                 }
                 console.log('The Reducer file was saved!')
+              })
+            }
+            console.log(err)
+          }
+        )
+      }
+      if (REDUCERTEST) {
+        ejs.renderFile(reducerSpecTemplete, {props: {name: FEATURENAME, dirname: DIRNAME, allcapsname: ALLCAPSNAME}},
+          function (err, result) {
+            if (!err) {
+              let path = ''
+              path = `${process.cwd()}/Test/${DIRNAME}Reducer.spec.js`
+
+              fs.writeFile(path, result, function (err) {
+                if (err) {
+                  return console.log(err)
+                }
+                console.log('The Reducer  test file was saved!')
               })
             }
             console.log(err)

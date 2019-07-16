@@ -1,0 +1,89 @@
+/*
+Reference: https://alligator.io/react/testing-redux-reducers/
+*/
+import configureStore from 'redux-mock-store';
+import <%= props.name %>Actions from '../Actions/<%= props.dirname %>Action';
+import <%= props.dirname %>Reducer from '../Reducers/<%= props.dirname %>Reducer';
+import ActionTypes from '../ActionTypes/<%= props.dirname %>ActionType';
+
+const mockStore = configureStore();
+const store = mockStore();
+
+beforeEach(() => {
+jest.useFakeTimers();
+store.clearActions();
+});
+describe('Testing actions', () => {
+test('Dispatches the request action', () => {
+const expectedActions = [
+{
+type: ActionTypes.<%= props.allcapsname %>_REQUEST,
+<%= props.dirname %>Info: [{
+testData: 'test'
+}]
+}
+];
+store.dispatch(
+<%= props.name %>Actions.<%= props.dirname %>Request([{
+testData: 'test'
+}])
+);
+expect(store.getActions()).toEqual(expectedActions);
+});
+});
+
+describe('Testing reducer state with dummy action', () => {
+test('is correct', () => {
+const action = { type: 'dummy_action', <%= props.dirname %>Info: null };
+const initialState = {
+fetching: false,
+<%= props.dirname %>Info: null,
+<%= props.dirname %>Response: null,
+<%= props.dirname %>Error: null
+};
+expect(<%= props.dirname %>Reducer(undefined, action)).toEqual(initialState);
+});
+});
+
+describe('Testing reducer state with different action', () => {
+test('returns the correct state for <%= props.dirname %> request', () => {
+const action = { type: '<%= props.allcapsname %>_REQUEST' };
+const expectedState = {
+fetching: true,
+undefined,
+<%= props.dirname %>Error: null,
+<%= props.dirname %>Response: null
+};
+expect(<%= props.dirname %>Reducer(undefined, action)).toEqual(expectedState);
+});
+test('returns the correct state for <%= props.dirname %> Failure', () => {
+const action = { type: '<%= props.allcapsname %>_ERROR' };
+const expectedState = {
+fetching: false,
+undefined,
+<%= props.dirname %>Response: null,
+<%= props.dirname %>Info: null
+};
+expect(<%= props.dirname %>Reducer(undefined, action)).toEqual(expectedState);
+});
+test('returns the correct state for <%= props.dirname %> Reset', () => {
+const action = { type: '<%= props.allcapsname %>_RESET' };
+const expectedState = {
+fetching: false,
+<%= props.dirname %>Error: null,
+<%= props.dirname %>Response: null,
+<%= props.dirname %>Info: null
+};
+expect(<%= props.dirname %>Reducer(undefined, action)).toEqual(expectedState);
+});
+test('returns the correct state for <%= props.dirname %> Success', () => {
+const action = { type: '<%= props.allcapsname %>_SUCCESS' };
+const expectedState = {
+<%= props.dirname %>Error: null,
+<%= props.dirname %>Info: null,
+<%= props.dirname %>Response: undefined,
+fetching: false
+};
+expect(<%= props.dirname %>Reducer(undefined, action)).toEqual(expectedState);
+});
+});

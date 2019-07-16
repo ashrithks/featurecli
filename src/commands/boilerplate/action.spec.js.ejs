@@ -1,0 +1,20 @@
+import
+<%= props.name %>Action
+from '../Actions/<%= props.dirname %>Action';
+
+beforeEach(() => {
+jest.resetModules();
+});
+describe('Testing actions', () => {
+it('Calling actions requests', () => {
+const <%= props.dirname %>Info = [{
+demoInfo: 'test'
+}];
+const <%= props.dirname %>Response = { success: true };
+const <%= props.dirname %>Error = { error: 'testerror' };
+<%= props.name %>Action.<%= props.dirname %>Request(<%= props.dirname %>Info);
+<%= props.name %>Action.<%= props.dirname %>Success(<%= props.dirname %>Response);
+<%= props.name %>Action.<%= props.dirname %>Failure(<%= props.dirname %>Error);
+<%= props.name %>Action.<%= props.dirname %>Reset();
+});
+});
