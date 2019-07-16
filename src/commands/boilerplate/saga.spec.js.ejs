@@ -1,0 +1,63 @@
+import { put } from 'redux-saga/effects';
+import <%= props.name %>Action from '../Actions/<%= props.dirname %>Action';
+import { <%= props.dirname %>Saga } from '../Sagas/<%= props.dirname %>Saga';
+
+describe('testing sagas - dispatching actions', () => {
+let generator = null;
+const <%= props.dirname %>Info = [{
+testData: 'test'
+}];
+beforeAll(() => {
+generator = <%= props.dirname %>Saga(<%= props.name %>Action.<%= props.dirname %>Request(<%= props.dirname %>Info));
+});
+
+test('should call success 200 ', () => {
+const <%= props.dirname %>Action = <%= props.name %>Action.<%= props.dirname %>Request(<%= props.dirname %>Info);
+generator = <%= props.dirname %>Saga(<%= props.dirname %>Action);
+const response = {};
+response.status = 200;
+response.data = <%= props.dirname %>Info;
+generator.next();
+const expectedResp = [{
+testData: 'test'
+}];
+const <%= props.dirname %>Success = <%= props.name %>Action.<%= props.dirname %>Success(expectedResp);
+expect(generator.next(response).value).toEqual(put(<%= props.dirname %>Success));
+});
+
+test('should call config failure with wrong error code', () => {
+const <%= props.dirname %>Action = <%= props.name %>Action.<%= props.dirname %>Request(<%= props.dirname %>Info);
+generator = <%= props.dirname %>Saga(<%= props.dirname %>Action);
+const response = {};
+response.status = 401;
+generator.next();
+const <%= props.dirname %>Failure = <%= props.name %>Action.<%= props.dirname %>Failure({ error: response });
+expect(generator.next(response).value).toEqual(put(<%= props.dirname %>Failure));
+});
+
+test('should call config failure with wrong error code', () => {
+const <%= props.dirname %>Action = <%= props.name %>Action.<%= props.dirname %>Request(<%= props.dirname %>Info);
+generator = <%= props.dirname %>Saga(<%= props.dirname %>Action);
+const response = {};
+response.status = 500;
+generator.next();
+const <%= props.dirname %>Failure = <%= props.name %>Action.<%= props.dirname %>Failure({ error: response });
+expect(generator.next(response).value).toEqual(put(<%= props.dirname %>Failure));
+});
+
+test('test - error scenario', () => {
+const <%= props.dirname %>Action = <%= props.name %>Action.<%= props.dirname %>Request(<%= props.dirname %>Info);
+generator = <%= props.dirname %>Saga(<%= props.dirname %>Action);
+const response = { data: { payload: {} } };
+generator.next(response);
+generator.next();
+});
+
+test('test - init method', () => {
+const <%= props.dirname %>Action = <%= props.name %>Action.<%= props.dirname %>Request(<%= props.dirname %>Info);
+generator = <%= props.dirname %>Saga(<%= props.dirname %>Action);
+const response = '';
+generator.next();
+generator.next(response);
+});
+});

@@ -3,7 +3,7 @@ import <%= props.name %>Actions from '../Actions/<%= props.dirname %>Action';
 import { <%= props.dirname %> } from '../../../Network/Interfaces';
 import Utils from '../../../Commons/Utils';
 
-export function* <%= props.dirname %>API(action) {
+export function* <%= props.dirname %>Saga(action) {
 const { <%= props.dirname %>Info } = action;
 try {
 const response = yield call(<%= props.dirname %>, <%= props.dirname %>Info);
